@@ -22,7 +22,7 @@ const QuestionForm = () => {
       correctOptionIndex: 0,
     },
   ]);
-  const [price, setPrice] = useState<number>(0); // New state for price
+  const [price, setPrice] = useState<number>(0);
 
   const handleNumberOfQuestionsChange = (
     e: React.ChangeEvent<HTMLInputElement>

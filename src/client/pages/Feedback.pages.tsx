@@ -10,11 +10,8 @@ const FeedbackForm: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Normally you'd send the data to your backend here
-    // For demonstration purposes, we're just setting a flag
     setSubmitted(true);
 
-    // Reset the form fields
     setName("");
     setEmail("");
     setFeedback("");

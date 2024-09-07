@@ -14,7 +14,6 @@ const DiscussionForum: React.FC = () => {
       message: "This is a sample message.",
       resources: "http://example.com",
     },
-    // Add more sample discussions here if needed
   ]);
 
   const handleAddDiscussion = (newDiscussion: Discussion) => {

@@ -1,22 +1,6 @@
 import React from "react";
 
 const LandingPage: React.FC = () => {
-  const features = [
-    {
-      title: "Comprehensive Study Materials",
-      description:
-        "Access a wide range of materials tailored for your success.",
-    },
-    {
-      title: "Mock Tests & Quizzes",
-      description: "Simulate real test scenarios with our practice quizzes.",
-    },
-    {
-      title: "Expert Guidance",
-      description: "Learn from experienced professionals in the field.",
-    },
-  ];
-
   return (
     <>
       <section className="relative w-full h-screen flex flex-col-reverse lg:flex-row items-center justify-center bg-white">

@@ -1,7 +1,6 @@
 import React from "react";
-import LandingPage from "src/client/pages/LandingPage";
-import Footer from "src/client/pages/footer.pages";
 import PageHeader from "src/client/pages/Header.page";
+import LandingPage from "src/client/pages/LandingPage";
 
 const LandingPageView: React.FC = () => {
   return (

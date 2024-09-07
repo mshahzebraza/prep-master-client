@@ -1,9 +1,7 @@
-import SignoutView from "@/client/views/signout/signout.view"
+import SignoutView from "@/client/views/signout/signout.view";
 
 const SignoutPage = () => {
-    return (
-        <SignoutView />
-    )
-}
+  return <SignoutView />;
+};
 
-export default SignoutPage
+export default SignoutPage;

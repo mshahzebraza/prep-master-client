@@ -4,7 +4,7 @@ interface Discussion {
   topic: string;
   message: string;
   resources?: string;
-  images?: File[]; // Adding images to the Discussion type
+  images?: File[];
 }
 
 interface DiscussionFormProps {
