@@ -22,5 +22,14 @@ export const TeacherLayout = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuthenticated, isTeacher])
 
-    return <Outlet />
+    return <>
+        <div className="flex flex-col py-4 px-6">
+            <h1 className="text-2xl font-bold" >Teacher Dashboard</h1>
+            <div>
+                <h2 className="text-lg " >Welcome to the teacher dashboard</h2>
+            </div>
+        </div>
+        <Outlet />
+    </>
+
 }

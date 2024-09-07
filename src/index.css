@@ -8,6 +8,6 @@ body {
     width: 100vw;
 }
 #root {
-    /* overflow: auto; */
+    overflow: auto;
     height: 100%;
 }

@@ -10,11 +10,23 @@ interface Question {
 
 type Category = "ecat" | "mdcat" | "nts" | "sat";
 
-const QuestionForm = () => {
-  const [testName, setTestName] = useState<string>("");
-  const [category, setCategory] = useState<Category>("ecat");
-  const [totalQuestions, setTotalQuestions] = useState<number>(1);
-  const [questions, setQuestions] = useState<Question[]>([
+
+type IQuestionFormProps = {
+  defaultValues?: {
+    testName: string;
+    category: Category;
+    totalQuestions: number;
+    questions: Question[];
+  }
+}
+
+
+const QuestionForm = ({ defaultValues }: IQuestionFormProps) => {
+
+  const [testName, setTestName] = useState<string>(defaultValues?.testName || "");
+  const [category, setCategory] = useState<Category>(defaultValues?.category || "ecat");
+  const [totalQuestions, setTotalQuestions] = useState<number>(defaultValues?.totalQuestions || 1);
+  const [questions, setQuestions] = useState<Question[]>(defaultValues?.questions || [
     {
       id: Date.now().toString(),
       text: "",

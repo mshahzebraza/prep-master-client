@@ -31,12 +31,16 @@ export const APP_URLS = {
         TEACHER: {
             ROOT: '/app/teacher/',
             FOLDER: '/app/teacher/*',
+            CREATE_TEST: '/app/teacher/tests/new',
+            EDIT_TEST: '/app/teacher/tests/:testId/edit',
             TEACHER_DASHBOARD: '/app/teacher/dashboard/',
         },
         STUDENT: {
             ROOT: '/app/student/',
             FOLDER: '/app/student/*',
             STUDENT_DASHBOARD: '/app/student/dashboard/',
+            STUDENT_TEST_SERIES: `/app/student/test-series`,
+            STUDENT_TEST_SERIES_SINGLE: (testSeriesId: string) => `/app/student/test-series/${testSeriesId}/`,
         },
     },
 }

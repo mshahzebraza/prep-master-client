@@ -9,10 +9,10 @@ const DashboardPage = () => {
 
         <Link
             className="text-blue-500"
-            to={APP_URLS.APP.ADMIN.ADMIN_DASHBOARD}>Admin Dashboard</Link>
+            to={APP_URLS.APP.ADMIN.ROOT}>Admin Dashboard</Link>
         <Link
             className="text-blue-500"
-            to={APP_URLS.APP.TEACHER.TEACHER_DASHBOARD}>Teacher Dashboard</Link>
+            to={APP_URLS.APP.TEACHER.ROOT}>Teacher Dashboard</Link>
         <Link
             className="text-blue-500"
             to={APP_URLS.APP.STUDENT.STUDENT_DASHBOARD}>Student Dashboard</Link>
