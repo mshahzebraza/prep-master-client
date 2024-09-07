@@ -7,6 +7,7 @@ import MultipleChoiceQuiz from "@/client/pages/MCQs.page";
 import TestsUI from "@/client/pages/tests.page";
 import SignupView from "@/client/views/signup/signup.view";
 import QuestionForm from "@/client/pages/CreateQuestions.page";
+import DiscussionFormView from "src/client/views/DiscussionForum/DiscussionForm.views";
 
 const AppRoutes = () => {
   return (
@@ -17,9 +18,10 @@ const AppRoutes = () => {
       {/* Catch all route for 404 */}
       <Route path="*" element={<div>404</div>} />
       <Route path="/mcqs" element={<MultipleChoiceQuiz />} />
-      <Route path="/" element={<TestsUI />} />
+      <Route path="/testui" element={<TestsUI />} />
       <Route path="/signup" element={<SignupView />} />
-      <Route path="/questions" element={<QuestionForm />} />
+      <Route path="/" element={<QuestionForm />} />
+      <Route path="/discussion" element={<DiscussionFormView />} />
     </Routes>
   );
 };

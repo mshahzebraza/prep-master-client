@@ -22,6 +22,7 @@ const QuestionForm = () => {
       correctOptionIndex: 0,
     },
   ]);
+  const [price, setPrice] = useState<number>(0); // New state for price
 
   const handleNumberOfQuestionsChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -68,7 +69,7 @@ const QuestionForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log({ testName, category, totalQuestions, questions });
+    console.log({ testName, category, totalQuestions, questions, price });
   };
 
   return (
@@ -89,7 +90,7 @@ const QuestionForm = () => {
 
         <div className="mb-4">
           <label className="block text-lg font-medium mb-2">
-            Category:
+            Type of Test:
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as Category)}
@@ -118,13 +119,27 @@ const QuestionForm = () => {
           </label>
         </div>
 
+        <div className="mb-4">
+          <label className="block text-lg font-medium mb-2">
+            Price (PKR):
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(parseFloat(e.target.value))}
+              min="0"
+              required
+              className="ml-2 p-2 border border-gray-300 rounded-md w-full"
+            />
+          </label>
+        </div>
+
         <div className="max-h-96 overflow-y-auto">
           {questions.map((question, qIndex) => (
             <div
               key={qIndex}
               className="p-4 mb-4 border rounded-lg shadow-md bg-white"
             >
-              <h3 className=" text-xl font-semibold mb-2">
+              <h3 className="text-xl font-semibold mb-2">
                 Question {qIndex + 1}
               </h3>
               <div className="mb-4">

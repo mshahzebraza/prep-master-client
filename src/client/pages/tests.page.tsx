@@ -66,7 +66,7 @@ export default function TestsUI() {
                 href={test.feedbackUrl}
                 className="block mt-4 text-blue-500 hover:underline"
               >
-                Review Feedback
+                View Feedback
               </a>
             </div>
           ))
