@@ -7,6 +7,7 @@ import { User } from './types';
 interface AuthContextType {
   user: User | null;
   loginWithPopup: () => Promise<void>;
+  createAccount: (name:string,email: string, password: string) => Promise<void>;
   loginWithEmailPassword: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshToken: () => Promise<string | null>;
@@ -107,6 +108,28 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  const createAccount = async (name:string,email: string, password: string) => {
+    try {
+      setLoading(true);
+      const response = await axios.post('/auth/signup', {name, email, password }, {
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" }
+      });
+
+      if (response?.data?.data?.accessToken) {
+        setUser(response.data.data);
+        localStorage.setItem('persistant', 'true');
+      } else {
+        throw new Error('No access token in login response');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = async () => {
     try {
       setLoading(true);
@@ -128,6 +151,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const value: AuthContextType = {
     user,
     loginWithPopup,
+    createAccount,
     loginWithEmailPassword,
     logout,
     refreshToken,
