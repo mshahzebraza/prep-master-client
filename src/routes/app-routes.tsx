@@ -8,6 +8,7 @@ import TestsUI from "@/client/pages/tests.page";
 import SignupView from "@/client/views/signup/signup.view";
 import QuestionForm from "@/client/pages/CreateQuestions.page";
 import DiscussionFormView from "src/client/views/DiscussionForum/DiscussionForm.views";
+import FeedbackFormView from "src/client/views/Feedback/FeedbackForm.view";
 
 const AppRoutes = () => {
   return (
@@ -20,8 +21,9 @@ const AppRoutes = () => {
       <Route path="/mcqs" element={<MultipleChoiceQuiz />} />
       <Route path="/testui" element={<TestsUI />} />
       <Route path="/signup" element={<SignupView />} />
-      <Route path="/" element={<QuestionForm />} />
+      <Route path="/QuestionForm" element={<QuestionForm />} />
       <Route path="/discussion" element={<DiscussionFormView />} />
+      <Route path="/" element={<FeedbackFormView />} />
     </Routes>
   );
 };
