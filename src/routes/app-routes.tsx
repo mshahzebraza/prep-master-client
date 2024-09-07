@@ -10,6 +10,8 @@ const AppRoutes = () => {
             <Route path={APP_URLS.FOLDER} element={<HomeRoutes />} />
             <Route path={APP_URLS.APP.FOLDER} element={<PrivateRoutes />} />
             <Route path={APP_URLS.AUTH.FOLDER} element={<AuthRoutes />} />
+            {/* Catch all route for 404 */}
+            <Route path="*" element={<div>404</div>} />
         </Routes>
     )
 }

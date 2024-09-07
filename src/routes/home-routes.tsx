@@ -7,6 +7,8 @@ export const HomeRoutes = () => {
     return <Routes>
         <Route element={<HomeLayout />}>
             <Route path={APP_URLS.HOME.ROOT} element={<HomePage />} />
+            {/* Catch all route for 404 */}
+            <Route path="*" element={<div>404 home</div>} />
         </Route>
     </Routes>;
 };

@@ -16,6 +16,8 @@ export const PrivateRoutes = () => {
         <Route element={<PrivateLayout />} >
             <Route path={getAppRelativePath(APP_URLS.ROOT)} element={<DashboardPage />} />
             <Route path={getAppRelativePath(APP_URLS.SIGNOUT)} element={<SignoutPage />} />
+            {/* Catch all route for 404 */}
+            <Route path="*" element={<div>404 private</div>} />
         </Route>
     </Routes>;
 };

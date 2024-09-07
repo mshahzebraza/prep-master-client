@@ -17,6 +17,8 @@ export const AuthRoutes = () => {
         <Route element={<AuthLayout />}>
             <Route path={getAuthRelativePath(AUTH_URLS.LOGIN)} element={<LoginPage />} />
             <Route path={getAuthRelativePath(AUTH_URLS.SIGNUP)} element={<SignupPage />} />
+            {/* Catch all route for 404 */}
+            <Route path="*" element={<div>404 auth</div>} />
         </Route>
     </Routes>;
 };
