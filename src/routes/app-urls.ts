@@ -22,5 +22,21 @@ export const APP_URLS = {
         SIGNOUT: '/app/signout/',
         ROOT: '/app/',
         FOLDER: '/app/*',
+
+        ADMIN: {
+            ROOT: '/app/admin/',
+            FOLDER: '/app/admin/*',
+            ADMIN_DASHBOARD: '/app/admin/dashboard/',
+        },
+        TEACHER: {
+            ROOT: '/app/teacher/',
+            FOLDER: '/app/teacher/*',
+            TEACHER_DASHBOARD: '/app/teacher/dashboard/',
+        },
+        STUDENT: {
+            ROOT: '/app/student/',
+            FOLDER: '/app/student/*',
+            STUDENT_DASHBOARD: '/app/student/dashboard/',
+        },
     },
 }

@@ -1,3 +1,6 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -9,6 +12,10 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    screens: {
+      "xs": "480px",
+      ...defaultTheme.screens, // because adding a smaller breakpoint requires re-adding all the other breakpoints
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -17,6 +24,7 @@ module.exports = {
       },
     },
     extend: {
+      
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react(),],
   resolve: {
     alias: {
+      "src": path.resolve(__dirname, "./src"),
       "@": path.resolve(__dirname, "./src"),
       "@api": path.resolve(__dirname, "./src/api"),
       "@application": path.resolve(__dirname, "./src/application"),
@@ -19,6 +20,7 @@ export default defineConfig({
       "@data": path.resolve(__dirname, "./src/data"),
       "@routes": path.resolve(__dirname, "./src/routes"),
       "@shared": path.resolve(__dirname, "./src/shared"),
+      "@utils": path.resolve(__dirname, "./src/shared/utils"),
     },
   },
   server: {
