@@ -1,127 +1,67 @@
-import { Button } from "@/components/ui/button";
-import authAtom from "@/shared/store/auth.store";
-import { useAtom } from "jotai";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { signupFormDefaultValues, SignupFormValues, signupSchema } from "src/client/views/signup/signup-form.model";
+import { Button, Input, Label } from "src/components/ui";
 
-const SignupForm = () => {
-  const [_, setAuth] = useAtom(authAtom);
-  const [userType, setUserType] = useState("student");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+interface SignupFormProps {
+  onSubmit: (data: SignupFormValues) => void;
+}
 
-  const signupHandler = () => {
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
+const SignupForm = (props: SignupFormProps) => {
 
-    setAuth((prev) => ({
-      ...prev,
-      isAuth: true,
-      userType,
-      email,
-      name,
-    }));
-  };
+  const { onSubmit } = props;
+
+  const { register, handleSubmit } = useForm({
+    resolver: zodResolver(signupSchema),
+    defaultValues: signupFormDefaultValues
+  });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 ">
-      <div className="max-w-md w-full bg-white shadow-md rounded-lg p-8 border border-slate-300">
-        <h1 className="text-2xl font-bold mb-4 text-center">Sign Up</h1>
-
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Sign up as:
-          </label>
-          <div className="flex items-center mb-4">
-            <label className="mr-4">
-              <input
-                type="radio"
-                name="userType"
-                value="student"
-                checked={userType === "student"}
-                onChange={() => setUserType("student")}
-                className="mr-2"
-              />
-              Student
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="userType"
-                value="teacher"
-                checked={userType === "teacher"}
-                onChange={() => setUserType("teacher")}
-                className="mr-2"
-              />
-              Teacher
-            </label>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Full Name
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-            placeholder="Enter your full name"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-            placeholder="Enter your email"
-          />
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Password
-          </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-            placeholder="Enter your password"
-          />
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-            placeholder="Confirm your password"
-          />
-        </div>
-
-        <Button
-          onClick={signupHandler}
-          className="w-full py-2 bg-blue-500 text-white hover:bg-blue-600"
-        >
-          Sign Up as {userType.charAt(0).toUpperCase() + userType.slice(1)}
-        </Button>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {/* Name */}
+      <div className="space-y-2">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          id="name"
+          type="text"
+          placeholder="Your name"
+          {...register('name')}
+          required
+        />
       </div>
-    </div>
-  );
-};
+      <div className="space-y-2">
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="your@email.com"
+          {...register('email')}
+          required
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          type="password"
+          {...register('password')}
+          required
+        />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="confirmPassword">Confirm Password</Label>
+        <Input
+          id="confirmPassword"
+          type="password"
+          {...register('confirmPassword')}
+          required
+        />
+      </div>
+      <Button type="submit" className="w-full">
+        Sign up
+      </Button>
+    </form>
+  )
+}
 
 export default SignupForm;

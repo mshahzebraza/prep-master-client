@@ -1,4 +1,4 @@
-import authAtom from "@/shared/store/auth.store";
+import { authAtom } from "@/shared/store/auth.store";
 import { cn } from "@/shared/utils";
 import { useAtom } from "jotai";
 import { Outlet } from "react-router-dom";

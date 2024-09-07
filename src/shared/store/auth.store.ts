@@ -1,19 +1,21 @@
-import { atom } from 'jotai'
+import { atom, useAtom } from 'jotai'
+import { ILoginUserDto } from 'src/api/auth/auth.dto'
 
-const authAtom = atom<{
+export const authAtom = atom<{
     initAuthChecked: boolean,
     isAuth: boolean,
-    user?: {
-        name: string,
-        role: 'admin' | 'user'
-    }
+    user?: ILoginUserDto['response'] | null
 }>({
     initAuthChecked: false,
-    isAuth: true,
-    user: {
-        name: "Shahzeb",
-        role: "admin"
-    }
+    isAuth: false,
+    user: null
+
 })
 
-export default authAtom;
+const useAuthStore = () => {
+    const stateAndSetters = useAtom(authAtom)
+
+    return stateAndSetters
+}
+
+export default useAuthStore;

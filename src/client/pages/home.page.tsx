@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { APP_URLS } from "@/routes/app-urls";
-import authAtom from "@/shared/store/auth.store";
-import { useAtom } from "jotai";
+import useAuthStore from "@/shared/store/auth.store";
 import { useNavigate } from "react-router-dom";
+import { Button } from "src/components/ui";
 
 
 interface IHomeAction {
@@ -26,7 +25,7 @@ const HomeAction = (props: IHomeAction) => {
 
 const HomePage = () => {
 
-    const [auth] = useAtom(authAtom)
+    const [auth] = useAuthStore()
     const isAuthenticated = auth.isAuth
 
     return (
