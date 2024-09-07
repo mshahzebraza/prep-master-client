@@ -1,24 +1,57 @@
-import useAuthStore from "@/shared/store/auth.store";
-import { Button } from "src/components/ui";
+import { APP_URLS } from "@/routes/app-urls";
+import { useNavigate } from "react-router-dom";
+import AuthHooks from "src/application/hooks/auth.hook";
+import GoogleLoginController from "src/client/views/login/google-login-controller";
+import LoginCard from "src/client/views/login/login-card";
+import LoginForm from 'src/client/views/login/login-form';
+import { LoginFormValues } from 'src/client/views/login/login-form.model';
+import useAuthStore from "src/shared/store/auth.store";
+
 
 const LoginView = () => {
+  const [_, setUser] = useAuthStore()
 
-    const [_, setAuth] = useAuthStore()
-
-    const loginHandler = () => setAuth(prev => ({
+  // const { navigateToRedirectUrl } = useRedirectUrl(APP_URLS.APP.ROOT)
+  const { loginUser, isPending, isSuccess, data } = AuthHooks.useLoginHook({
+    onSuccess: (data) => {
+      // set the auth state
+      console.log("User logged in:", data)
+      setUser(prev => ({
         ...prev,
-        isAuth: true
-    }))
+        isAuth: true,
+        user: data
+      }))
 
-    return (
-        <div>
-            <h1>Login Screen</h1>
+    }
+  })
 
-            <Button onClick={loginHandler}>
-                Login
-            </Button>
-        </div>
-    )
+  const navigate = useNavigate()
+  const redirectToForgetPassword = () => navigate(APP_URLS.AUTH.FORGET_PASSWORD)
+  const redirectToCreateAccount = () => navigate(APP_URLS.AUTH.SIGNUP)
+
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      await loginUser(data)
+    } catch (error) {
+      console.error(error)
+    }
+  };
+
+  return (
+    <section
+      aria-label="Login View"
+      className="min-h-screen bg-gradient-to-br from-pink-100 to-blue-100 flex flex-col items-center justify-center p-4">
+      <LoginCard
+        forgotPassword={redirectToForgetPassword}
+        createAccount={redirectToCreateAccount}
+      >
+        <LoginForm
+          onSubmit={onSubmit}
+        />
+        <GoogleLoginController />
+      </LoginCard>
+    </section>
+  );
 }
 
-export default LoginView
+export default LoginView;
