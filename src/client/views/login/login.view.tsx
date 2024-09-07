@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
-import authAtom from "@/shared/store/auth.store";
-import { useAtom } from "jotai";
+import useAuthStore from "@/shared/store/auth.store";
+import { Button } from "src/components/ui";
 
 const LoginView = () => {
 
-    const [_, setAuth] = useAtom(authAtom)
+    const [_, setAuth] = useAuthStore()
 
     const loginHandler = () => setAuth(prev => ({
         ...prev,

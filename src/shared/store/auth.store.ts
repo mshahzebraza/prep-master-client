@@ -1,6 +1,6 @@
-import { atom } from 'jotai'
+import { atom, useAtom } from 'jotai'
 
-const authAtom = atom<{
+export const authAtom = atom<{
     initAuthChecked: boolean,
     isAuth: boolean,
     user?: {
@@ -16,4 +16,10 @@ const authAtom = atom<{
     }
 })
 
-export default authAtom;
+const useAuthStore = () => {
+    const stateAndSetters = useAtom(authAtom)
+
+    return stateAndSetters
+}
+
+export default useAuthStore;

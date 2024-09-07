@@ -1,10 +1,10 @@
-import authAtom from "@/shared/store/auth.store";
 import { useAtom } from "jotai";
 import { useEffect } from "react"
+import useAuthStore from "src/shared/store/auth.store";
 
 const SignoutView = () => {
 
-    const [_, setAuth] = useAtom(authAtom)
+    const [_, setAuth] = useAuthStore()
 
 
     useEffect(() => {

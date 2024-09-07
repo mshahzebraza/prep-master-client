@@ -4,6 +4,7 @@
         /* Paths */
         "baseUrl": ".",
         "paths": {
+            "src/*": ["./src/*"],
             "@/*": ["./src/*"],
             "@api/*": ["./src/api/*"],
             "@application/*": ["./src/application/*"],

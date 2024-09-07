@@ -1,11 +1,10 @@
 import { APP_URLS } from "@/routes/app-urls";
-import authAtom from "@/shared/store/auth.store";
-import { useAtom } from "jotai";
+import useAuthStore from "@/shared/store/auth.store";
 import { Outlet, useNavigate } from "react-router-dom";
 
 export const AuthLayout = () => {
 
-    const [auth] = useAtom(authAtom)
+    const [auth] = useAuthStore()
     const isAuthenticated = auth.isAuth
     const navigate = useNavigate()
 
