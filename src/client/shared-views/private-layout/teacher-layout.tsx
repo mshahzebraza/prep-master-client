@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
+import { useAuth } from "src/application/hooks/useAuth"
 import { APP_URLS } from "src/routes/app-urls"
 import useAuthStore from "src/shared/store/auth.store"
 
@@ -7,9 +8,9 @@ import useAuthStore from "src/shared/store/auth.store"
 
 export const TeacherLayout = () => {
 
-    const [auth] = useAuthStore()
-    const isAuthenticated = auth.isAuth
-    const isTeacher = auth.user?.roles.includes("teacher")
+    const {user} = useAuth();
+    const isAuthenticated = !!user?.email
+    const isTeacher = user?.roles.includes("teacher")
     const navigate = useNavigate()
 
     const redirectToHome = () => navigate(APP_URLS.ROOT)
