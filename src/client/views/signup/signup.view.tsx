@@ -13,7 +13,7 @@ const SignupView = () => {
 
     const navigate = useNavigate()
     // const [_, setUser] = useAuthStore()
-    const {user,createAccount} = useAuth();
+    const { user, createAccount } = useAuth();
 
     // TODO: Combine it with App Signup to create a single hook
     // const { signupUser, isPending, isSuccess, data } = AuthHooks.useSignupHook({
@@ -36,12 +36,12 @@ const SignupView = () => {
     const onSubmit = async (data: SignupFormValues) => {
         try {
 
-            let response:any = await createAccount(data.name,data.email,data.password)
-            if(response.status === 1){
-                alert(response.message)
-            }else{
-                alert(`Create Account Failed`)
-            }
+            let response: any = await createAccount(data.name, data.email, data.password)
+            // if(response.status === 1){
+            //     alert(response.message)
+            // }else{
+            //     alert(`Create Account Failed`)
+            // }
             // const signinUser = await signupUser({ email: data.email, password: data.password, name: data.name })
 
         } catch (error) {
