@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
 
-// Define the Question type
 interface Question {
   id: string;
   text: string;
@@ -9,8 +8,12 @@ interface Question {
   correctOptionIndex: number;
 }
 
+type Category = "ecat" | "mdcat" | "nts" | "sat";
+
 const QuestionForm = () => {
-  const [numQuestions, setNumQuestions] = useState<number>(1);
+  const [testName, setTestName] = useState<string>("");
+  const [category, setCategory] = useState<Category>("ecat");
+  const [totalQuestions, setTotalQuestions] = useState<number>(1);
   const [questions, setQuestions] = useState<Question[]>([
     {
       id: Date.now().toString(),
@@ -24,9 +27,8 @@ const QuestionForm = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const newNumQuestions = parseInt(e.target.value, 10);
-    setNumQuestions(newNumQuestions);
+    setTotalQuestions(newNumQuestions);
 
-    // Adjust the number of questions in state
     const newQuestions = [...questions];
     while (newQuestions.length < newNumQuestions) {
       newQuestions.push({
@@ -65,9 +67,8 @@ const QuestionForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    // For example, you could pass the questions to a handler function or API call
-    console.log(questions);
+
+    console.log({ testName, category, totalQuestions, questions });
   };
 
   return (
@@ -75,10 +76,40 @@ const QuestionForm = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="mb-4">
           <label className="block text-lg font-medium mb-2">
-            Number of Questions:
+            Test Name:
+            <input
+              type="text"
+              value={testName}
+              onChange={(e) => setTestName(e.target.value)}
+              required
+              className="ml-2 p-2 border border-gray-300 rounded-md w-full"
+            />
+          </label>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-lg font-medium mb-2">
+            Category:
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value as Category)}
+              required
+              className="ml-2 p-2 border border-gray-300 rounded-md w-full"
+            >
+              <option value="ecat">ECAT</option>
+              <option value="mdcat">MDCAT</option>
+              <option value="nts">NTS</option>
+              <option value="sat">SAT</option>
+            </select>
+          </label>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-lg font-medium mb-2">
+            Total Number of Questions:
             <input
               type="number"
-              value={numQuestions}
+              value={totalQuestions}
               onChange={handleNumberOfQuestionsChange}
               min="1"
               required
@@ -93,42 +124,41 @@ const QuestionForm = () => {
               key={qIndex}
               className="p-4 mb-4 border rounded-lg shadow-md bg-white"
             >
-              <h3 className="text-xl font-semibold mb-2">
+              <h3 className=" text-xl font-semibold mb-2">
                 Question {qIndex + 1}
               </h3>
               <div className="mb-4">
-                <label className="block mb-2">
-                  Question Text:
-                  <input
-                    type="text"
-                    value={question.text}
-                    onChange={(e) =>
-                      handleQuestionChange(qIndex, "text", e.target.value)
-                    }
-                    required
-                    className="ml-2 p-2 border border-gray-300 rounded-md w-full"
-                  />
-                </label>
+                <input
+                  type="text"
+                  value={question.text}
+                  onChange={(e) =>
+                    handleQuestionChange(qIndex, "text", e.target.value)
+                  }
+                  required
+                  className="ml-2 p-2 border border-gray-300 rounded-md w-full"
+                />
               </div>
 
-              {question.options.map((option, oIndex) => (
-                <div key={oIndex} className="mb-2">
-                  <label className="block mb-1">
-                    Option {oIndex + 1}:
-                    <input
-                      type="text"
-                      value={option}
-                      onChange={(e) =>
-                        handleOptionChange(qIndex, oIndex, e.target.value)
-                      }
-                      required
-                      className="ml-2 p-2 border border-gray-300 rounded-md w-full"
-                    />
-                  </label>
-                </div>
-              ))}
+              <div className="flex flex-wrap">
+                {question.options.map((option, oIndex) => (
+                  <div key={oIndex} className="w-1/2 p-2">
+                    <label className="block mb-1">
+                      Option {oIndex + 1}
+                      <input
+                        type="text"
+                        value={option}
+                        onChange={(e) =>
+                          handleOptionChange(qIndex, oIndex, e.target.value)
+                        }
+                        required
+                        className="ml-2 p-2 border border-gray-300 rounded-md w-full"
+                      />
+                    </label>
+                  </div>
+                ))}
+              </div>
 
-              <div>
+              <div className="mt-4">
                 <label className="block mb-2">
                   Correct Option Index:
                   <input
@@ -142,7 +172,7 @@ const QuestionForm = () => {
                       )
                     }
                     min="0"
-                    max="3"
+                    max={question.options.length - 1}
                     required
                     className="ml-2 p-2 border border-gray-300 rounded-md w-full"
                   />

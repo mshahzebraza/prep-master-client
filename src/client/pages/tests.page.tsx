@@ -6,19 +6,28 @@ const tests = [
     category: "ECAT",
     type: "Engineering",
     totalQuestions: 60,
+    feedbackUrl: "/feedback/vocabulary",
   },
-  { name: "Physics", category: "MDCAT", type: "Medical", totalQuestions: 100 },
+  {
+    name: "Physics",
+    category: "MDCAT",
+    type: "Medical",
+    totalQuestions: 100,
+    feedbackUrl: "/feedback/physics",
+  },
   {
     name: "General Knowledge",
     category: "NTS",
     type: "General",
     totalQuestions: 80,
+    feedbackUrl: "/feedback/general-knowledge",
   },
   {
     name: "Mathematics",
     category: "SAT",
     type: "Standardized",
     totalQuestions: 120,
+    feedbackUrl: "/feedback/mathematics",
   },
 ];
 
@@ -53,6 +62,12 @@ export default function TestsUI() {
               <p className="text-sm text-gray-600">
                 Total Questions: {test.totalQuestions}
               </p>
+              <a
+                href={test.feedbackUrl}
+                className="block mt-4 text-blue-500 hover:underline"
+              >
+                Review Feedback
+              </a>
             </div>
           ))
         ) : (

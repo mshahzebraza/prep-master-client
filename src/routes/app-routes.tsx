@@ -17,9 +17,9 @@ const AppRoutes = () => {
       {/* Catch all route for 404 */}
       <Route path="*" element={<div>404</div>} />
       <Route path="/mcqs" element={<MultipleChoiceQuiz />} />
-      <Route path="/test" element={<TestsUI />} />
+      <Route path="/" element={<TestsUI />} />
       <Route path="/signup" element={<SignupView />} />
-      <Route path="/" element={<QuestionForm />} />
+      <Route path="/questions" element={<QuestionForm />} />
     </Routes>
   );
 };
