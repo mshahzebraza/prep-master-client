@@ -7,7 +7,7 @@ import { User } from './types';
 interface AuthContextType {
   user: User | null;
   loginWithPopup: () => Promise<void>;
-  createAccount: (name:string,email: string, password: string) => Promise<void>;
+  createAccount: (name: string, email: string, password: string, role: string) => Promise<void>;
   loginWithEmailPassword: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshToken: () => Promise<string | null>;
@@ -108,10 +108,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const createAccount = async (name:string,email: string, password: string) => {
+  const createAccount = async (name: string, email: string, password: string, role: string) => {
     try {
       setLoading(true);
-      const response = await axios.post('/auth/signup', {name, email, password }, {
+      const response = await axios.post('/auth/signup', { name, email, password, role }, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" }
       });
@@ -175,7 +175,7 @@ interface Auth0AuthProviderProps {
 
 export const Auth0AuthProvider: React.FC<Auth0AuthProviderProps> = ({ children }) => {
   return (
-    <Auth0Provider 
+    <Auth0Provider
       domain={`dev-8fuccwoxftr03gm2.us.auth0.com`}
       clientId={`usCvvwoL2Hg0U8Lbe4hQ4gCEosXpIppl`}
       authorizationParams={{

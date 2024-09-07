@@ -8,7 +8,7 @@ import useAuthStore from "src/shared/store/auth.store"
 
 export const TeacherLayout = () => {
 
-    const {user} = useAuth();
+    const { user } = useAuth();
     const isAuthenticated = !!user?.email
     const isTeacher = user?.roles.includes("teacher")
     const navigate = useNavigate()

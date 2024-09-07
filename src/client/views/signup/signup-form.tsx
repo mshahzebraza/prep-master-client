@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signupFormDefaultValues, SignupFormValues, signupSchema } from "src/client/views/signup/signup-form.model";
-import { Button, Input, Label } from "src/components/ui";
+import { Button, Input, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "src/components/ui";
 
 interface SignupFormProps {
   onSubmit: (data: SignupFormValues) => void;
@@ -57,6 +57,16 @@ const SignupForm = (props: SignupFormProps) => {
           required
         />
       </div>
+      <Select>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select your role" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="teacher">Teacher</SelectItem>
+          <SelectItem value="student">Student</SelectItem>
+        </SelectContent>
+      </Select>
+
       <Button type="submit" className="w-full">
         Sign up
       </Button>

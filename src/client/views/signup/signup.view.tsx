@@ -1,11 +1,9 @@
 import SignupForm from '@/client/views/signup/signup-form'
 import { useNavigate } from 'react-router-dom'
-import AuthHooks from 'src/application/hooks/auth.hook'
 import { useAuth } from 'src/application/hooks/useAuth'
 import SignupCard from 'src/client/views/signup/signup-card'
 import { SignupFormValues } from 'src/client/views/signup/signup-form.model'
 import { APP_URLS } from 'src/routes/app-urls'
-import useAuthStore from 'src/shared/store/auth.store'
 
 
 
@@ -36,7 +34,9 @@ const SignupView = () => {
     const onSubmit = async (data: SignupFormValues) => {
         try {
 
-            let response: any = await createAccount(data.name, data.email, data.password)
+            await createAccount(data.name, data.email, data.password, data.role)
+            alert("Account created successfully")
+
             // if(response.status === 1){
             //     alert(response.message)
             // }else{

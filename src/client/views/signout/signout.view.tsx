@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import AuthHooks from "src/application/hooks/auth.hook";
+import { useAuth } from "src/application/hooks/useAuth";
 import useAuthStore from "src/shared/store/auth.store";
 
 const SignoutView = () => {
+    const { logout } = useAuth();
 
     const [_, setAuth] = useAuthStore()
 
-    const { logoutUser } = AuthHooks.useLogoutHook()
-
     useEffect(() => {
-        logoutUser()
+        logout()
     }, [])
 
     useEffect(() => {
