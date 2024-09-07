@@ -26,7 +26,7 @@ const LoginView = () => {
   //   }
   // })
 
-  const {user,loginWithEmailPassword,loginWithPopup} = useAuth()
+  const { user, loginWithEmailPassword, loginWithPopup } = useAuth()
 
   console.log(user)
   const navigate = useNavigate()
@@ -38,7 +38,7 @@ const LoginView = () => {
       // await loginUser(data)
 
       console.log(import.meta.env.SERVERURL);
-      let response = await loginWithEmailPassword(data.email,data.password)
+      await loginWithEmailPassword(data.email, data.password)
 
 
     } catch (error) {

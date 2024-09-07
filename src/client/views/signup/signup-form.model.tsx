@@ -4,7 +4,8 @@ export const signupFormDefaultValues = {
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    role: 'teacher'
 }
 
 export const signupSchema = z.object({
@@ -12,6 +13,7 @@ export const signupSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
     confirmPassword: z.string().min(6),
+    role: z.string()
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],
@@ -19,6 +21,7 @@ export const signupSchema = z.object({
     name: data.name,
     email: data.email,
     password: data.password,
+    role: data.role,
 }));
 
 export type SignupFormValues = z.infer<typeof signupSchema>;
